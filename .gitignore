@@ -16,6 +16,8 @@ anydev
 .env
 *.local
 *.md
+# 顶层 README 公开，其他 .md 保持本地
+!README.md
 # OS
 .DS_Store
 Thumbs.db
