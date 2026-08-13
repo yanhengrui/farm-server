@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package farm.internal.v1;
+
+option go_package = "github.com/photon/farm-server/server/gen/farm/rpc/v1;rpcv1";
+
+import "google/protobuf/timestamp.proto";
+
+service CatalogService {
+  rpc ListCatalogUnlocks(ListCatalogUnlocksRequest) returns (ListCatalogUnlocksResponse);
+}
+
+message CatalogUnlock {
+  string catalog_key = 1;
+  google.protobuf.Timestamp unlocked_at = 2;
+}
+
+message ListCatalogUnlocksRequest { int64 user_id = 1; }
+message ListCatalogUnlocksResponse { repeated CatalogUnlock unlocks = 1; }

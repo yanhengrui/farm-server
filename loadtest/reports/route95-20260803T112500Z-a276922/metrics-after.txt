@@ -1,0 +1,30 @@
+route95 post-test evidence (sanitized)
+commit=a276922954cd30a5de08d13c7ad5256513a3ced7 branch=main dirty=true
+final_topology=1 gamesvr, 1 farmsvr, 1 gatesvr, 1 workersvr
+application_live_ready=PASS
+etcd_endpoint_health=PASS
+formal_soak_duration_seconds=1800.017959969
+formal_soak_target_rps=650
+formal_soak_attempted=1169850
+formal_soak_accepted=1169850
+formal_soak_accepted_rps=649.9101820184878
+formal_soak_rejected=0 failed=0 farm_version_errors=0
+formal_soak_latency_ms=p50:16.625,p95:46.317,p99:129.039
+short_1k_probe_duration_seconds=60.037510366
+short_1k_probe_accepted_rps=999.3752178301311 rejected=0 failed=0
+5k_probe_result=route95-gatesvr-1 OOM-killed during warm-up under 512MiB limit; measurement accepted=0
+relay_soak_events=23408 latency_ms=p50:67,p95:117,p99:148,max:386
+normal_final_outbox_pending=0
+normal_final_consumer_lag=0
+kafka_outage_peak_pending=690
+kafka_outage_peak_publishing=258
+kafka_outage_peak_total=948
+kafka_outage_oldest_seconds=30
+kafka_outage_recovery_seconds=127
+kafka_outage_final_pending=0 final_publishing=0 final_dead=0 final_consumer_lag=0
+outbox_published_total=74141
+consumed_events_total=296564
+consumer_failed_events=0
+mysql_row_lock_waits=0 mysql_row_lock_time_ms=0 mysql_connection_errors_max_connections=0
+correctness=state_divergence:0,duplicate_assets:0,version_regressions:0,unauthorized_successes:0,negative_remaining_yield:0,idempotent_duplicate_events:0
+scope_limit=load generator and all services shared one physical host

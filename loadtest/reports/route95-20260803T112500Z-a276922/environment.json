@@ -1,0 +1,42 @@
+{
+  "precheck": "READY_WITH_LIMITS",
+  "reason": "load generator and all tested services share one physical host; conclusions are limited to a single-host resource pool",
+  "repository": "/data/code/farm-server",
+  "branch": "main",
+  "commit": "a276922954cd30a5de08d13c7ad5256513a3ced7",
+  "dirty_worktree_before": false,
+  "dirty_worktree_at_report": true,
+  "host": {
+    "logical_cpus": 16,
+    "cpu_model": "AMD EPYC 9K65 192-Core Processor",
+    "memory_bytes": 32851742720,
+    "swap_bytes": 0,
+    "data_filesystem_bytes": 52521566208,
+    "data_filesystem_available_bytes_at_capture": 45254959104,
+    "disk": "virtual /dev/vdb, 50 GiB, lsblk ROTA=1; physical SSD property not exposed",
+    "nofile_limit": 524288,
+    "load_generator_location": "same physical host",
+    "network_bandwidth": "not exposed by the virtual NIC"
+  },
+  "versions": {
+    "go": "go1.26.3 linux/amd64",
+    "docker": "28.4.0",
+    "docker_compose": "5.3.1",
+    "mysql": "8.0.46",
+    "redis": "7.4.10",
+    "kafka": "3.6.2",
+    "etcd": "3.5.21"
+  },
+  "isolation": {
+    "mysql_database": "farm_route95",
+    "mysql_container": "route95-mysql",
+    "redis_container": "route95-redis",
+    "kafka_container": "route95-kafka",
+    "etcd_container": "route95-etcd",
+    "docker_networks": ["route95-net", "route95-access"],
+    "etcd_prefix": "/farm-server/route95/a276922-20260803",
+    "kafka_topic": "route95-events-a276922",
+    "kafka_consumer_group_prefix": "route95-workersvr-a276922",
+    "shared_services_modified": false
+  }
+}

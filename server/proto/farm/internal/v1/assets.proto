@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package farm.internal.v1;
+
+option go_package = "github.com/photon/farm-server/server/gen/farm/rpc/v1;rpcv1";
+
+service AssetService {
+  rpc GetPlayerAssets(GetPlayerAssetsRequest) returns (GetPlayerAssetsResponse);
+}
+
+message AssetInventoryItem {
+  string item_type = 1;
+  int64 item_id = 2;
+  int64 quantity = 3;
+}
+
+message GetPlayerAssetsRequest { int64 user_id = 1; }
+message GetPlayerAssetsResponse {
+  int64 coin_balance = 1;
+  repeated AssetInventoryItem inventory = 2;
+}

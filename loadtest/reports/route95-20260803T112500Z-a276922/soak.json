@@ -1,0 +1,275 @@
+{
+  "status": "COMPLETE",
+  "started_at": "2026-08-04T02:23:56Z",
+  "duration_seconds": 1800.017959969,
+  "target_rps": 650,
+  "users": 5000,
+  "gateways": 1,
+  "mix_configured": {
+    "Purchase": 49,
+    "Sell": 49,
+    "Plant": 1,
+    "Water": 1,
+    "Harvest": 0
+  },
+  "commands_actual": {
+    "Plant": 1611,
+    "Purchase": 573250,
+    "Sell": 573204,
+    "Water": 21785
+  },
+  "attempted": 1169850,
+  "accepted": 1169850,
+  "ack_ok": 23396,
+  "rejected": 0,
+  "failed": 0,
+  "retried": 5792,
+  "loadgen_queue_full": 0,
+  "accepted_rps": 649.9101820184878,
+  "p50_ms": 16.625,
+  "p95_ms": 46.317,
+  "p99_ms": 129.039,
+  "errors": {},
+  "farm_version_errors": 0,
+  "minute_samples": [
+    {
+      "elapsed_seconds": 60,
+      "attempted": 39000,
+      "accepted": 38987,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 649.7833292180388
+    },
+    {
+      "elapsed_seconds": 120,
+      "attempted": 78006,
+      "accepted": 77993,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 649.9916766121218
+    },
+    {
+      "elapsed_seconds": 180,
+      "attempted": 117000,
+      "accepted": 116988,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 649.9166628754862
+    },
+    {
+      "elapsed_seconds": 240,
+      "attempted": 156000,
+      "accepted": 155987,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 649.8750199743355
+    },
+    {
+      "elapsed_seconds": 300,
+      "attempted": 195006,
+      "accepted": 194993,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 649.9916702107706
+    },
+    {
+      "elapsed_seconds": 360,
+      "attempted": 234006,
+      "accepted": 233993,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 649.9999976166667
+    },
+    {
+      "elapsed_seconds": 420,
+      "attempted": 273006,
+      "accepted": 272993,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 649.8916848275107
+    },
+    {
+      "elapsed_seconds": 480,
+      "attempted": 312006,
+      "accepted": 311993,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 649.9999992416667
+    },
+    {
+      "elapsed_seconds": 540,
+      "attempted": 351013,
+      "accepted": 351000,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 650.0083382162111
+    },
+    {
+      "elapsed_seconds": 600,
+      "attempted": 390013,
+      "accepted": 389981,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 649.6833319256862
+    },
+    {
+      "elapsed_seconds": 660,
+      "attempted": 429000,
+      "accepted": 428987,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 650.099999902485
+    },
+    {
+      "elapsed_seconds": 720,
+      "attempted": 468006,
+      "accepted": 467993,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 649.9916696800325
+    },
+    {
+      "elapsed_seconds": 780,
+      "attempted": 507000,
+      "accepted": 506987,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 649.8999949091167
+    },
+    {
+      "elapsed_seconds": 840,
+      "attempted": 546006,
+      "accepted": 545993,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 649.9916674162722
+    },
+    {
+      "elapsed_seconds": 900,
+      "attempted": 585000,
+      "accepted": 584988,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 649.8083671024432
+    },
+    {
+      "elapsed_seconds": 960,
+      "attempted": 624006,
+      "accepted": 623993,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 649.9750042742835
+    },
+    {
+      "elapsed_seconds": 1020,
+      "attempted": 663006,
+      "accepted": 662915,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 648.5919043760329
+    },
+    {
+      "elapsed_seconds": 1080,
+      "attempted": 702000,
+      "accepted": 701974,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 650.9833324653556
+    },
+    {
+      "elapsed_seconds": 1140,
+      "attempted": 741000,
+      "accepted": 740987,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 650.2166628845731
+    },
+    {
+      "elapsed_seconds": 1200,
+      "attempted": 780000,
+      "accepted": 779981,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 649.7917011557136
+    },
+    {
+      "elapsed_seconds": 1260,
+      "attempted": 819006,
+      "accepted": 818993,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 650.091656916293
+    },
+    {
+      "elapsed_seconds": 1320,
+      "attempted": 857987,
+      "accepted": 857975,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 649.6999889442718
+    },
+    {
+      "elapsed_seconds": 1380,
+      "attempted": 896974,
+      "accepted": 896955,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 649.6666545612113
+    },
+    {
+      "elapsed_seconds": 1440,
+      "attempted": 935974,
+      "accepted": 935962,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 650.0083501310452
+    },
+    {
+      "elapsed_seconds": 1500,
+      "attempted": 974967,
+      "accepted": 974961,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 649.9833205611611
+    },
+    {
+      "elapsed_seconds": 1560,
+      "attempted": 1013967,
+      "accepted": 1013949,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 649.6917313526269
+    },
+    {
+      "elapsed_seconds": 1620,
+      "attempted": 1052967,
+      "accepted": 1052955,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 649.9916692576084
+    },
+    {
+      "elapsed_seconds": 1680,
+      "attempted": 1091967,
+      "accepted": 1091949,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 649.8999993392683
+    },
+    {
+      "elapsed_seconds": 1740,
+      "attempted": 1130967,
+      "accepted": 1130961,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 650.1999992414334
+    }
+  ],
+  "hot_viewers": [
+    1,
+    2,
+    4,
+    8,
+    20
+  ]
+}

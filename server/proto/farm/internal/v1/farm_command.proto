@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package farm.internal.v1;
+
+option go_package = "github.com/photon/farm-server/server/gen/farm/rpc/v1;rpcv1";
+
+import "farm/internal/v1/farm.proto";
+
+service FarmCommandService {
+  rpc SubmitCommand(SubmitCommandRequest) returns (SubmitCommandResponse);
+}
+
+message SubmitCommandRequest { FarmCommand command = 1; }
+message SubmitCommandResponse { CommitResult result = 1; }

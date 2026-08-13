@@ -1,0 +1,56 @@
+# Go
+server/coverage.out
+server/coverage.html
+*.exe
+*.test
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+doc
+anydev
+
+# Environment
+.env
+*.local
+*.md
+# OS
+.DS_Store
+Thumbs.db
+
+# Build
+server/bin/
+/dist/
+loadtest/*
+
+# Test
+docker-compose.yml
+
+# Documentation (local only)
+doc/
+deploy
+reports
+
+# Route 9 load-test evidence is versioned with the runner.
+!loadtest/README.md
+!loadtest/correctness-report.md
+!loadtest/route9.5-report.json
+!loadtest/route95_stateful.go
+!loadtest/route95_stateful_test.go
+!loadtest/route95_fixtures.sql
+!loadtest/route95_grpc_health.go
+!loadtest/route95_kafka_outage.sh
+!loadtest/route10_collect_mysql.sh
+!loadtest/route10_collect_host.sh
+!loadtest/route10_snapshot.sh
+!loadtest/route10_freeze_baseline.sh
+!loadtest/reports/
+!loadtest/reports/**
+
+# Go build artifacts
+server/gamesvr
+server/gatesvr
+server/farmsvr
+server/workersvr

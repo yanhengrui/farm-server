@@ -1,0 +1,10 @@
+route95 pre-load evidence (sanitized)
+commit=a276922954cd30a5de08d13c7ad5256513a3ced7 branch=main initial_dirty=false
+host_cpu=16 logical, AMD EPYC 9K65
+host_memory_bytes=32851742720 swap_bytes=0 nofile=524288
+data_filesystem_bytes=52521566208 available_bytes=47244640256 (initial audit)
+load_generator_location=same physical host
+initial_outbox_relay=batch 50, scan interval 1s, synchronous per-message Kafka publish
+initial_relay_measurement=500 events in approximately 510s (approximately 0.98 events/s)
+fixed_relay_measurement=500 events in 0.094s (approximately 5319 events/s)
+consumer_failed_events=0

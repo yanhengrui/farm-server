@@ -1,0 +1,52 @@
+{
+  "status": "PASS",
+  "valid_run": true,
+  "isolation": {
+    "broker": "route95-kafka",
+    "topic": "route95-events-a276922",
+    "consumer_group_prefix": "route95-workersvr-a276922",
+    "non_route95_consumer_observed": false
+  },
+  "outage_started_at": "2026-08-04T03:05:22Z",
+  "broker_recovered_at": "2026-08-04T03:07:59Z",
+  "outage_seconds": 30,
+  "recovery_seconds": 127,
+  "load": {
+    "duration_seconds": 600.024127789,
+    "target_rps": 300,
+    "attempted": 179991,
+    "accepted": 179991,
+    "accepted_rps": 299.97293719377615,
+    "rejected": 0,
+    "failed": 0,
+    "retried": 33,
+    "p50_ms": 17.456,
+    "p95_ms": 44.112,
+    "p99_ms": 111.469,
+    "farm_version_errors": 0
+  },
+  "backlog": {
+    "peak_pending": 690,
+    "peak_publishing": 258,
+    "peak_total": 948,
+    "oldest_event_age_seconds": 30,
+    "final_pending": 0,
+    "final_publishing": 0,
+    "final_dead": 0
+  },
+  "recovery": {
+    "business_transactions_continued": true,
+    "incorrectly_published_during_outage": 0,
+    "relay_recovered_automatically": true,
+    "consumer_groups": 4,
+    "consumer_partitions": 64,
+    "final_consumer_lag": 0,
+    "duplicate_consumption": 0,
+    "duplicate_task_progress": 0,
+    "duplicate_catalog_unlocks": 0,
+    "duplicate_mail": 0,
+    "consumer_failed_events": 0,
+    "publisher_errors_during_outage": 820
+  },
+  "note": "An earlier attempt in which load ended before the outage was classified INVALID and excluded."
+}

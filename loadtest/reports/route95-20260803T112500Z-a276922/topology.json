@@ -1,0 +1,25 @@
+{
+  "scope": "single physical host; isolated Docker networks and volumes",
+  "middleware": {
+    "mysql": {"instances":1,"cpu_limit":3.0,"memory_bytes":5368709120,"host_port":13306},
+    "redis": {"instances":1,"cpu_limit":1.0,"memory_bytes":1073741824,"host_port":16379},
+    "kafka": {"instances":1,"cpu_limit":2.0,"memory_bytes":3221225472,"host_port":19092,"topic_partitions":16},
+    "etcd": {"instances":1,"cpu_limit":0.5,"memory_bytes":536870912,"host_port":12379},
+    "workersvr": {"instances":1,"cpu_limit":1.5,"memory_bytes":1073741824}
+  },
+  "application_instance_limits": {
+    "gamesvr": {"cpu_limit_each":1.0,"memory_bytes_each":805306368},
+    "farmsvr": {"cpu_limit_each":1.0,"memory_bytes_each":536870912},
+    "gatesvr": {"cpu_limit_each":1.0,"memory_bytes_each":536870912}
+  },
+  "scale_matrix": [
+    {"instances_each":1,"mysql_total_connection_budget":200,"mysql_connections_per_gamesvr":200},
+    {"instances_each":2,"mysql_total_connection_budget":200,"mysql_connections_per_gamesvr":100},
+    {"instances_each":4,"mysql_total_connection_budget":200,"mysql_connections_per_gamesvr":50},
+    {"instances_each":8,"mysql_total_connection_budget":200,"mysql_connections_per_gamesvr":25}
+  ],
+  "load_generator": {"instances":1,"cpu_limit":2.0,"memory_bytes":1073741824,"location":"same host"},
+  "rpc_transport": "grpc",
+  "event_bus_driver": "kafka",
+  "worker_scale_mixed_into_application_scale": false
+}

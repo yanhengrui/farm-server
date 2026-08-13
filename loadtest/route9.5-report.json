@@ -1,0 +1,113 @@
+{
+  "status": "PARTIAL",
+  "date": "2026-08-04",
+  "base_commit": "a276922954cd30a5de08d13c7ad5256513a3ced7",
+  "dirty_worktree": true,
+  "report_directory": "/data/code/farm-server/loadtest/reports/route95-20260803T112500Z-a276922",
+  "precheck": {
+    "status": "READY_WITH_LIMITS",
+    "reason": "load generator and tested services share one physical host; conclusions are limited to a single-host resource pool"
+  },
+  "dedicated_environment": {
+    "mysql_database": "farm_route95",
+    "redis": "route95-redis",
+    "kafka": "route95-kafka",
+    "etcd": "route95-etcd",
+    "workersvr": "route95-workersvr",
+    "exclusive_topic_and_consumers": true,
+    "shared_services_modified": false
+  },
+  "migrations": {
+    "all_up_migrations_applied_in_filename_order": true,
+    "down_migrations_executed": false,
+    "player_tasks_present": true,
+    "required_schema_checks": "PASS",
+    "checksums_file": "migration-checksums.json"
+  },
+  "quality_gates": {
+    "make_check": "PASS",
+    "route9_acceptance_and_race": "PASS",
+    "scheduler_soak_regression": "PASS_MEMORY_ONLY_NOT_CAPACITY_EVIDENCE",
+    "route9_mysql_dedicated": "PASS",
+    "route9_external_dedicated": "PASS",
+    "two_gateway_e2e": "PASS",
+    "stateful_driver_tests": "PASS"
+  },
+  "formal_soak": {
+    "status": "COMPLETE_BELOW_PASS_THRESHOLD",
+    "duration_seconds": 1800.017959969,
+    "target_rps": 650,
+    "attempted": 1169850,
+    "accepted": 1169850,
+    "accepted_rps": 649.9101820184878,
+    "rejected": 0,
+    "failed": 0,
+    "p50_ms": 16.625,
+    "p95_ms": 46.317,
+    "p99_ms": 129.039,
+    "correctness_errors": 0
+  },
+  "short_capacity_probes": {
+    "one_thousand_rps": {
+      "duration_seconds": 60.037510366,
+      "accepted": 60000,
+      "accepted_rps": 999.3752178301311,
+      "rejected": 0,
+      "failed": 0
+    },
+    "five_thousand_rps": {
+      "status": "STOP_CONDITION",
+      "failure": "route95-gatesvr-1 OOM-killed during warm-up under its 512 MiB limit",
+      "measurement_accepted": 0,
+      "higher_targets_skipped": [10000, 20000, 30000, 50000]
+    }
+  },
+  "scale": {
+    "offered_rps": 650,
+    "instances_1": {"accepted_rps":649.7824098119399,"efficiency":1.0,"p95_ms":42.011,"p99_ms":91.706,"duration_seconds":60.020091974},
+    "instances_2": {"accepted_rps":649.7732625946775,"efficiency":0.4999929607246902,"p95_ms":59.114,"p99_ms":142.266,"duration_seconds":60.02093691},
+    "instances_4": {"accepted_rps":649.675650370419,"efficiency":0.2499589263456446,"p95_ms":44.112,"p99_ms":91.706,"duration_seconds":60.019180306},
+    "instances_8": {"accepted_rps":649.2347592348467,"efficiency":0.1248946470589468,"p95_ms":48.633,"p99_ms":96.291,"duration_seconds":28.830865467,"note":"stopped under same-host resource pressure; 15 in-flight requests ended by termination signal"},
+    "interpretation": "deployment and routing evidence at constant offered load; not cross-host linear scaling evidence"
+  },
+  "correctness": {
+    "state_divergence": 0,
+    "duplicate_asset_settlements": 0,
+    "farm_version_regressions": 0,
+    "unauthorized_successes": 0,
+    "negative_remaining_yield": 0,
+    "idempotent_replay_duplicate_events": 0,
+    "consumer_permanent_failures": 0
+  },
+  "relay": {
+    "before_events_per_second": 0.98,
+    "after_events_per_second": 5319,
+    "soak_events": 23408,
+    "publish_latency_p95_ms": 117,
+    "publish_latency_p99_ms": 148,
+    "final_pending": 0,
+    "final_consumer_lag": 0
+  },
+  "kafka_outage": {
+    "status": "PASS",
+    "outage_started_at": "2026-08-04T03:05:22Z",
+    "outage_seconds": 30,
+    "peak_backlog": 948,
+    "oldest_event_age_seconds": 30,
+    "recovery_seconds": 127,
+    "final_outbox_backlog": 0,
+    "final_consumer_lag": 0,
+    "dead_outbox": 0,
+    "consumer_failed_events": 0,
+    "non_route95_consumer_observed": false
+  },
+  "first_capacity_bottleneck": "single gatesvr exceeded its 512 MiB container memory limit during 5k/s warm-up and was OOM-killed",
+  "formal_pass_threshold_met": false,
+  "remaining_risks": [
+    "formal 30-minute accepted throughput is below 10000 commands/s",
+    "load generator and services share CPU, memory, network and disk",
+    "8-instance stage was shortened by same-host resource pressure",
+    "physical SSD property and virtual NIC bandwidth were not exposed"
+  ],
+  "next_step": "profile and fix the gatesvr 5k/s warm-up memory failure, then use an independent load host to rerun progressive capacity and stable 1/2/4/8 breakpoint tests"
+}

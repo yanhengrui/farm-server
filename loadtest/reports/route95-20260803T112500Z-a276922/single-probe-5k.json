@@ -1,0 +1,47 @@
+{
+  "status": "COMPLETE",
+  "started_at": "2026-08-04T03:18:14Z",
+  "duration_seconds": 60.006142974,
+  "target_rps": 5000,
+  "users": 5000,
+  "gateways": 1,
+  "mix_configured": {
+    "Purchase": 47,
+    "Sell": 47,
+    "Plant": 2,
+    "Water": 2,
+    "Harvest": 2
+  },
+  "commands_actual": {
+    "Harvest": 8150,
+    "Plant": 4534,
+    "Purchase": 140295,
+    "Sell": 140295,
+    "Water": 5226
+  },
+  "attempted": 298500,
+  "accepted": 0,
+  "ack_ok": 0,
+  "rejected": 0,
+  "failed": 298500,
+  "retried": 281891,
+  "loadgen_queue_full": 0,
+  "accepted_rps": 0,
+  "p50_ms": 0,
+  "p95_ms": 0,
+  "p99_ms": 0,
+  "errors": {
+    "Post \"http://route95-gatesvr-1:8080/api/v1/farm/sell\": dial tcp: lookup route95-gatesvr-1 on 127.0.0.11:53: server misbehaving": 140295,
+    "Post \"http://route95-gatesvr-1:8080/api/v1/shop/purchase\": dial tcp: lookup route95-gatesvr-1 on 127.0.0.11:53: server misbehaving": 140295,
+    "SNAPSHOT_REFRESH": 17910
+  },
+  "farm_version_errors": 0,
+  "minute_samples": null,
+  "hot_viewers": [
+    1,
+    2,
+    4,
+    8,
+    20
+  ]
+}

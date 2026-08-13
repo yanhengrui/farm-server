@@ -1,0 +1,29 @@
+{
+  "database": "farm_route95",
+  "ordered_up_migrations": [
+    {"file":"202607241600_init_core.up.sql","sha256":"aec3b028fc1676769d169c6d912453fc4de85ab8962f9946d3f953a484832484"},
+    {"file":"202607241701_route1_complete_schema.up.sql","sha256":"8013757907716a705c4590444ad659b19856f63aae6b1d560ce8a13e5326512e"},
+    {"file":"202607271200_drop_farm_snapshots_owner_id.up.sql","sha256":"946e9c586c566bb88e1652dfc899e1a2b6ead5f13e0d294fe0385913d20415f5"},
+    {"file":"202607271300_route5_consumed_events.up.sql","sha256":"857af187ec2fe834f857223bbb300f7805d3740be37b8f863c6e3668795f6f02"},
+    {"file":"202607291000_route7_social.up.sql","sha256":"619069d464190c0bac6a1426f335a403cbe66e1a7e844767673b68784a675a33"},
+    {"file":"202607300001_route7_mail.up.sql","sha256":"bd2c1091d406e18bc668afb62db36c370b917fa5199f35b832a9a76d53a4b9d4"},
+    {"file":"202607300002_drop_social_invites.up.sql","sha256":"29ab82f11ed22086032205bb67390e212ba133c1e1a615c3bbdfb05173a011b6"},
+    {"file":"202607300003_route8_tasks.up.sql","sha256":"49c5cc4c872ae0bc8d21a8ed8b36d3410920d11dc149d76d454d33b04bb5cc44"},
+    {"file":"202607300004_route8_pets.up.sql","sha256":"277ba73889d8b5fa0376e27138f6d670e39094b3ec5ee43ff238ededc9091234"},
+    {"file":"202608030001_route97_consumer_failed_events.up.sql","sha256":"a4b8b10f8c40a0e23d1ba95881b8d3c301ba884a4a526c48dfff5905b1e75955"},
+    {"file":"202608030002_route98_pet_auto_harvest.up.sql","sha256":"06ba5742c6b3b26309604a07fe19e492ece4d61eb2a71f992b8a85521866a4fc"},
+    {"file":"202608030003_farm_remaining_yield.up.sql","sha256":"94cc111c2124b81bb20de19320bf6a2f1e0f7523b6369d02eaa72bd5b9743a05"},
+    {"file":"202608030004_drop_legacy_farm_owner_id.up.sql","sha256":"cdb5f26ac461a0b8f23ef2b7b7cbd2788aa11393636f5c5150eb60a73bf8b077"}
+  ],
+  "down_migrations_executed": false,
+  "all_applied_in_filename_order": true,
+  "required_tables_present": ["accounts","farm_snapshots","wallets","inventory_items","economy_transactions","cmd_receipts","outbox_events","consumed_events","consumer_failed_events","friendships","mails","mail_attachments","player_tasks","catalog_unlocks","player_pets"],
+  "schema_checks": {
+    "player_pets_auto_harvest_enabled_not_null": true,
+    "outbox_status_created_at_available_at_updated_at_not_null": true,
+    "outbox_lock_fields_present": true,
+    "farm_snapshots_legacy_owner_id_absent": true,
+    "remaining_yield_in_snapshot_json": true,
+    "code_deserialization_verified_by_tests": true
+  }
+}

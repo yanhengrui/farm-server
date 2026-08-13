@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package farm.internal.v1;
+
+option go_package = "github.com/photon/farm-server/server/gen/farm/rpc/v1;rpcv1";
+
+service SocialService {
+  rpc CreateInvite(CreateInviteRequest) returns (CreateInviteResponse);
+  rpc AcceptInvite(AcceptInviteRequest) returns (AcceptInviteResponse);
+  rpc AreFriends(AreFriendsRequest) returns (AreFriendsResponse);
+  rpc ListFriends(ListFriendsRequest) returns (ListFriendsResponse);
+}
+
+message CreateInviteRequest { int64 inviter_user_id = 1; }
+message CreateInviteResponse { string invite_code = 1; }
+message AcceptInviteRequest {
+  string invite_code = 1;
+  int64 accepter_user_id = 2;
+}
+message AcceptInviteResponse {}
+message AreFriendsRequest {
+  int64 user_id_a = 1;
+  int64 user_id_b = 2;
+}
+message AreFriendsResponse { bool friends = 1; }
+message ListFriendsRequest { int64 user_id = 1; }
+message Friend {
+  int64 user_id = 1;
+  string display_name = 2;
+}
+message ListFriendsResponse { repeated Friend friends = 1; }

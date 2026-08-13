@@ -1,0 +1,98 @@
+syntax = "proto3";
+
+package farm.internal.v1;
+
+option go_package = "github.com/photon/farm-server/server/gen/farm/rpc/v1;rpcv1";
+
+import "google/protobuf/timestamp.proto";
+
+service FarmService {
+  rpc CommitFarmCommand(CommitFarmCommandRequest) returns (CommitFarmCommandResponse);
+  rpc LoadSnapshot(LoadSnapshotRequest) returns (LoadSnapshotResponse);
+  rpc GetSnapshot(GetSnapshotRequest) returns (GetSnapshotResponse);
+  rpc AdvanceRouteEpoch(AdvanceRouteEpochRequest) returns (AdvanceRouteEpochResponse);
+}
+
+message FarmCommand {
+  string cmd_id = 1;
+  int64 farm_id = 2;
+  int64 actor_user = 3;
+  string type = 4;
+  int32 plot_id = 5;
+  string crop_id = 6;
+  int64 quantity = 7;
+  int64 base_version = 8;
+  int64 route_epoch = 9;
+  google.protobuf.Timestamp pet_scheduled_at = 10;
+}
+
+message FarmPlot {
+  int32 plot_id = 1;
+  string crop_id = 2;
+  string status = 3;
+  google.protobuf.Timestamp planted_at = 4;
+  google.protobuf.Timestamp mature_at = 5;
+  int32 watered_count = 6;
+  int64 remaining_yield = 7;
+}
+
+message FarmSnapshot {
+  int64 farm_id = 1;
+  int64 owner_id = 2;
+  int64 version = 3;
+  repeated FarmPlot plots = 4;
+  int64 route_epoch = 5;
+}
+
+message FarmPatch {
+  int64 farm_id = 1;
+  int64 version = 2;
+  repeated FarmPlot plots = 3;
+  int64 actor_user = 4;
+}
+
+message CommitResult {
+  int64 new_version = 1;
+  FarmPatch patch = 2;
+  string event_id = 3;
+  bool replayed = 4;
+  int64 coin_balance = 5;
+}
+
+message CommitFarmCommandRequest { FarmCommand command = 1; }
+message CommitFarmCommandResponse { CommitResult result = 1; }
+message LoadSnapshotRequest { int64 farm_id = 1; }
+message LoadSnapshotResponse { FarmSnapshot snapshot = 1; }
+message GetSnapshotRequest { int64 farm_id = 1; }
+
+message InventoryItem {
+  string item_type = 1;
+  int64 item_id = 2;
+  int64 quantity = 3;
+}
+
+message PlotView {
+  int32 plot_id = 1;
+  string status = 2;
+  string crop_id = 3;
+  string growth_stage = 4;
+  string planted_at = 5;
+  string mature_at = 6;
+  int64 remaining_yield = 7;
+}
+
+message FarmSnapshotView {
+  int64 farm_id = 1;
+  int64 owner_user_id = 2;
+  int64 version = 3;
+  repeated PlotView plots = 4;
+  // Deprecated compatibility fields. GetSnapshot never populates private
+  // economy data; use AssetService.GetPlayerAssets.
+  int64 coin_balance = 5 [deprecated = true];
+  repeated InventoryItem inventory = 6 [deprecated = true];
+  string owner_display_name = 7;
+}
+
+message GetSnapshotResponse { FarmSnapshotView snapshot = 1; }
+message AdvanceRouteEpochRequest { int64 farm_id = 1; int64 route_epoch = 2; }
+message AdvanceRouteEpochResponse {}

@@ -1,0 +1,28 @@
+{
+  "secrets_redacted": true,
+  "app_env": "stress",
+  "rpc_transport": "grpc",
+  "event_bus_driver": "kafka",
+  "etcd_prefix": "/farm-server/route95/a276922-20260803",
+  "kafka_topic": "route95-events-a276922",
+  "kafka_consumer_group_prefix": "route95-workersvr-a276922",
+  "gamesvr_expected_instances": "matches each 1/2/4/8 stage",
+  "mysql_total_connection_budget": 200,
+  "core_global_max_inflight": {"production_default":20,"stress_value":512},
+  "gateway_http_rps_per_user": 10,
+  "gateway_http_burst_per_user": 20,
+  "gateway_http_rps_per_ip": {"production_default":50,"stress_value":20000},
+  "gateway_http_burst_per_ip": {"production_default":100,"stress_value":40000},
+  "relay_batch_size": 1000,
+  "relay_poll_interval": "100ms",
+  "relay_drain_limit": 0,
+  "relay_workers": 1,
+  "load": {
+    "users": 5000,
+    "normal_farm_viewers": "1-4",
+    "hot_farm_viewers": [1,2,4,8,20],
+    "scale_mix_percent": {"Purchase":47,"Sell":47,"Plant":2,"Water":2,"Harvest":2},
+    "soak_mix_percent": {"Purchase":49,"Sell":49,"Plant":1,"Water":1,"Harvest":0},
+    "ack_loss_every": 257
+  }
+}

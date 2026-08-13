@@ -1,0 +1,46 @@
+{
+  "status": "PASS",
+  "scope": "dedicated route95 MySQL, Redis, Kafka and etcd; public gatesvr HTTP/WebSocket path",
+  "checks": {
+    "state_divergence": 0,
+    "duplicate_asset_settlements": 0,
+    "farm_version_regressions": 0,
+    "unauthorized_successes": 0,
+    "negative_remaining_yield": 0,
+    "idempotent_replay_duplicate_events": 0,
+    "consumer_permanent_failures": 0
+  },
+  "database_audits": {
+    "duplicate_cmd_receipts": 0,
+    "duplicate_economy_transactions": 0,
+    "duplicate_consumed_events": 0,
+    "duplicate_task_progress": 0,
+    "duplicate_catalog_unlocks": 0,
+    "negative_wallet_balances": 0,
+    "negative_inventory_quantities": 0,
+    "consumer_failed_events": 0,
+    "dead_outbox_events": 0
+  },
+  "protocol_scenarios": {
+    "ack_loss_same_cmd_id_replay": "PASS",
+    "base_version_conflict": "PASS",
+    "disconnect_snapshot_convergence_without_event_replay": "PASS",
+    "cross_gateway_complete_patch": "PASS",
+    "remaining_yield_snapshot_ack_event_consistency": "PASS",
+    "steal_does_not_settle_owner_early": "PASS",
+    "pet_auto_harvest_outbox_task_catalog_convergence": "PASS",
+    "stale_route_epoch_rejected": "PASS"
+  },
+  "cross_gateway_e2e": {
+    "status": "PASS",
+    "farm_id": "24",
+    "user_id": "24",
+    "plot_id": 1,
+    "base_version": 0,
+    "committed_version": 1,
+    "elapsed_ms": 272,
+    "ack_loss_replayed": true,
+    "cross_gateway_event": true,
+    "patch_fields_complete": true
+  }
+}

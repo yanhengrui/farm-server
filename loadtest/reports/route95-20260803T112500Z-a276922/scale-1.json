@@ -1,0 +1,52 @@
+{
+  "status": "COMPLETE",
+  "started_at": "2026-08-03T11:37:58Z",
+  "duration_seconds": 60.020091974,
+  "target_rps": 650,
+  "users": 5000,
+  "gateways": 1,
+  "mix_configured": {
+    "Purchase": 47,
+    "Sell": 47,
+    "Plant": 2,
+    "Water": 2,
+    "Harvest": 2
+  },
+  "commands_actual": {
+    "Harvest": 441,
+    "Plant": 485,
+    "Purchase": 18673,
+    "Sell": 18330,
+    "Water": 1071
+  },
+  "attempted": 39000,
+  "accepted": 39000,
+  "ack_ok": 1997,
+  "rejected": 0,
+  "failed": 0,
+  "retried": 60,
+  "loadgen_queue_full": 0,
+  "accepted_rps": 649.7824098119399,
+  "p50_ms": 16.625,
+  "p95_ms": 42.011,
+  "p99_ms": 91.706,
+  "errors": {},
+  "farm_version_errors": 0,
+  "minute_samples": [
+    {
+      "elapsed_seconds": 60,
+      "attempted": 39000,
+      "accepted": 38987,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 649.7832956459022
+    }
+  ],
+  "hot_viewers": [
+    1,
+    2,
+    4,
+    8,
+    20
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "status": "COMPLETE",
+  "started_at": "2026-08-03T13:06:06Z",
+  "duration_seconds": 28.830865467,
+  "target_rps": 650,
+  "users": 5000,
+  "gateways": 8,
+  "mix_configured": {
+    "Purchase": 47,
+    "Sell": 47,
+    "Plant": 2,
+    "Water": 2,
+    "Harvest": 2
+  },
+  "commands_actual": {
+    "Harvest": 340,
+    "Plant": 348,
+    "Purchase": 8890,
+    "Sell": 8789,
+    "Water": 366
+  },
+  "attempted": 18733,
+  "accepted": 18718,
+  "ack_ok": 1054,
+  "rejected": 0,
+  "failed": 15,
+  "retried": 0,
+  "loadgen_queue_full": 0,
+  "accepted_rps": 649.2347592348467,
+  "p50_ms": 18.329,
+  "p95_ms": 48.633,
+  "p99_ms": 96.291,
+  "errors": {
+    "Post \"http://route95-s8-gatesvr-1:8080/api/v1/shop/purchase\": terminated signal received": 2,
+    "Post \"http://route95-s8-gatesvr-2:8080/api/v1/shop/purchase\": terminated signal received": 2,
+    "Post \"http://route95-s8-gatesvr-3:8080/api/v1/shop/purchase\": terminated signal received": 2,
+    "Post \"http://route95-s8-gatesvr-4:8080/api/v1/shop/purchase\": terminated signal received": 2,
+    "Post \"http://route95-s8-gatesvr-5:8080/api/v1/shop/purchase\": terminated signal received": 3,
+    "Post \"http://route95-s8-gatesvr-6:8080/api/v1/shop/purchase\": terminated signal received": 1,
+    "Post \"http://route95-s8-gatesvr-7:8080/api/v1/shop/purchase\": terminated signal received": 2,
+    "Post \"http://route95-s8-gatesvr-8:8080/api/v1/shop/purchase\": terminated signal received": 1
+  },
+  "farm_version_errors": 0,
+  "minute_samples": null,
+  "hot_viewers": [
+    1,
+    2,
+    4,
+    8,
+    20
+  ]
+}

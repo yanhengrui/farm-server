@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package farm.internal.v1;
+
+option go_package = "github.com/photon/farm-server/server/gen/farm/rpc/v1;rpcv1";
+
+import "google/protobuf/timestamp.proto";
+
+service MailService {
+  rpc SendMail(SendMailRequest) returns (SendMailResponse);
+  rpc ListMails(ListMailsRequest) returns (ListMailsResponse);
+  rpc GetSummary(GetMailboxSummaryRequest) returns (GetMailboxSummaryResponse);
+  rpc ClaimAttachment(ClaimAttachmentRequest) returns (ClaimAttachmentResponse);
+  rpc MarkRead(MarkReadRequest) returns (MarkReadResponse);
+}
+
+message MailAttachment {
+  int64 attachment_id = 1;
+  string item_type = 2;
+  int64 item_id = 3;
+  int64 quantity = 4;
+  google.protobuf.Timestamp claimed_at = 5;
+}
+message SendMailRequest {
+  int64 user_id = 1;
+  optional int64 sender_id = 2;
+  string mail_type = 3;
+  string title = 4;
+  string content = 5;
+  google.protobuf.Timestamp expires_at = 6;
+  repeated MailAttachment attachments = 7;
+}
+message SendMailResponse { int64 mail_id = 1; }
+message ListMailsRequest {
+  int64 user_id = 1;
+  int32 limit = 2;
+}
+message Mail {
+  int64 mail_id = 1;
+  optional int64 sender_id = 2;
+  string mail_type = 3;
+  string title = 4;
+  string content = 5;
+  string status = 6;
+  google.protobuf.Timestamp created_at = 7;
+  repeated MailAttachment attachments = 8;
+}
+message ListMailsResponse { repeated Mail mails = 1; }
+message GetMailboxSummaryRequest { int64 user_id = 1; }
+message GetMailboxSummaryResponse {
+  int64 unread_count = 1;
+  int64 mailbox_version = 2;
+}
+message ClaimAttachmentRequest {
+  int64 attachment_id = 1;
+  int64 user_id = 2;
+}
+message ClaimAttachmentResponse {}
+message MarkReadRequest {
+  int64 mail_id = 1;
+  int64 user_id = 2;
+}
+message MarkReadResponse {}

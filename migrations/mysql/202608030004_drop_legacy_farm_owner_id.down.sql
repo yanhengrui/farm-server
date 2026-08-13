@@ -1,0 +1,6 @@
+-- Irreversible roll-forward migration.
+--
+-- owner_id was a redundant alias of owner_user_id and existing installations
+-- may already have removed it. Reintroducing a second ownership column would
+-- restore the schema defect fixed by the up migration, so rollback must be a
+-- forward application fix rather than a down migration.

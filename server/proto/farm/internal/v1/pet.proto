@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package farm.internal.v1;
+
+option go_package = "github.com/photon/farm-server/server/gen/farm/rpc/v1;rpcv1";
+
+service PetService {
+  rpc BuyPet(BuyPetRequest) returns (BuyPetResponse);
+  rpc HasPet(HasPetRequest) returns (HasPetResponse);
+  rpc SetAutoHarvest(SetAutoHarvestRequest) returns (SetAutoHarvestResponse);
+}
+
+message BuyPetRequest { int64 user_id = 1; }
+message BuyPetResponse {}
+message HasPetRequest { int64 user_id = 1; }
+message HasPetResponse {
+  bool has_pet = 1;
+  bool auto_harvest_enabled = 2;
+}
+message SetAutoHarvestRequest {
+  int64 user_id = 1;
+  bool enabled = 2;
+}
+message SetAutoHarvestResponse {}

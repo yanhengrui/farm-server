@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package farm.internal.v1;
+
+option go_package = "github.com/photon/farm-server/server/gen/farm/rpc/v1;rpcv1";
+
+service AccountService {
+  rpc GuestLogin(GuestLoginRequest) returns (GuestLoginResponse);
+  rpc Register(RegisterRequest) returns (GuestLoginResponse);
+  rpc PasswordLogin(PasswordLoginRequest) returns (GuestLoginResponse);
+  rpc RefreshSession(RefreshSessionRequest) returns (RefreshSessionResponse);
+  rpc Logout(LogoutRequest) returns (LogoutResponse);
+  rpc Authenticate(AuthenticateRequest) returns (AuthenticateResponse);
+}
+
+message GuestLoginRequest {
+  string device_id = 1;
+  string display_name = 2;
+}
+message GuestLoginResponse {
+  int64 user_id = 1;
+  int64 farm_id = 2;
+  string access_token = 3;
+  string refresh_token = 4;
+  string session_id = 5;
+  int32 expires_in = 6;
+  string display_name = 7;
+}
+message RefreshSessionRequest {
+  string session_id = 1;
+  string refresh_token = 2;
+}
+message RefreshSessionResponse {
+  string access_token = 1;
+  int32 expires_in = 2;
+  string refresh_token = 3;
+}
+message RegisterRequest {
+  string username = 1;
+  string password = 2;
+  string display_name = 3;
+}
+message PasswordLoginRequest {
+  string username = 1;
+  string password = 2;
+}
+message LogoutRequest {
+  string session_id = 1;
+  string refresh_token = 2;
+}
+message LogoutResponse { bool ok = 1; }
+message AuthenticateRequest { string access_token = 1; }
+message AuthenticateResponse {
+  int64 user_id = 1;
+  int64 farm_id = 2;
+}

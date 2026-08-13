@@ -1,0 +1,52 @@
+{
+  "status": "COMPLETE",
+  "started_at": "2026-08-03T11:27:37Z",
+  "duration_seconds": 60.022571751,
+  "target_rps": 1000,
+  "users": 5000,
+  "gateways": 1,
+  "mix_configured": {
+    "Purchase": 47,
+    "Sell": 47,
+    "Plant": 2,
+    "Water": 2,
+    "Harvest": 2
+  },
+  "commands_actual": {
+    "Harvest": 705,
+    "Plant": 704,
+    "Purchase": 16556,
+    "Sell": 16547,
+    "Water": 708
+  },
+  "attempted": 35220,
+  "accepted": 18629,
+  "ack_ok": 1031,
+  "rejected": 7117,
+  "failed": 9474,
+  "retried": 10148,
+  "loadgen_queue_full": 0,
+  "accepted_rps": 310.36657471594646,
+  "p50_ms": 21.218,
+  "p95_ms": 75.446,
+  "p99_ms": 4545.093,
+  "errors": {
+    "COMMON_RESOURCE_EXHAUSTED": 7117,
+    "Post \"http://route95-gatesvr-1:8080/api/v1/farm/sell\": context deadline exceeded": 373,
+    "Post \"http://route95-gatesvr-1:8080/api/v1/farm/sell\": dial tcp 172.19.0.9:8080: connect: cannot assign requested address": 3976,
+    "Post \"http://route95-gatesvr-1:8080/api/v1/shop/purchase\": context deadline exceeded": 421,
+    "Post \"http://route95-gatesvr-1:8080/api/v1/shop/purchase\": dial tcp 172.19.0.9:8080: connect: cannot assign requested address": 3926,
+    "SNAPSHOT_RECONCILE": 737,
+    "SNAPSHOT_REFRESH": 40,
+    "WS_CONNECT": 1
+  },
+  "farm_version_errors": 0,
+  "minute_samples": null,
+  "hot_viewers": [
+    1,
+    2,
+    4,
+    8,
+    20
+  ]
+}

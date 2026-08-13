@@ -1,0 +1,11 @@
+-- Farm snapshot JSON schema v2: plots[].remaining_yield.
+--
+-- remaining_yield lives inside farm_snapshots.snapshot, so no table DDL is
+-- required. Existing non-empty plots are migrated lazily by gamesvr: a missing
+-- key is restored from the authoritative crop configuration when the snapshot
+-- is read, and the next committed farm command writes the key durably. An
+-- explicit JSON value of 0 is preserved and is never treated as legacy data.
+--
+-- This avoids baking crop yields into SQL and remains compatible with crops
+-- added after this migration is deployed.
+

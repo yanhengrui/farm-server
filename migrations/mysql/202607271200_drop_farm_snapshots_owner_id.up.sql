@@ -1,0 +1,5 @@
+-- 删除 farm_snapshots.owner_id 冗余列。
+-- owner_user_id 已成为规范列名（一人一农场，UNIQUE 约束）。
+-- 当前线上表已无 owner_id 列；若其他环境仍有，手动执行：
+--   ALTER TABLE farm_snapshots DROP KEY idx_farm_owner, DROP COLUMN owner_id;
+-- 此文件仅作记录，实际变更已在开发环境完成。

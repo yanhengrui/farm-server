@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package farm.internal.v1;
+
+option go_package = "github.com/photon/farm-server/server/gen/farm/rpc/v1;rpcv1";
+
+message ErrorDetail {
+  string code = 1;
+  string message = 2;
+  int64 retry_after_ms = 3;
+  string reason = 4;
+}

@@ -1,0 +1,115 @@
+{
+  "status": "COMPLETE",
+  "started_at": "2026-08-04T03:04:41Z",
+  "duration_seconds": 600.024127789,
+  "target_rps": 300,
+  "users": 5000,
+  "gateways": 1,
+  "mix_configured": {
+    "Purchase": 45,
+    "Sell": 45,
+    "Plant": 5,
+    "Water": 5,
+    "Harvest": 0
+  },
+  "commands_actual": {
+    "Plant": 738,
+    "Purchase": 80999,
+    "Sell": 81000,
+    "Water": 17254
+  },
+  "attempted": 179991,
+  "accepted": 179991,
+  "ack_ok": 17992,
+  "rejected": 0,
+  "failed": 0,
+  "retried": 33,
+  "loadgen_queue_full": 0,
+  "accepted_rps": 299.97293719377615,
+  "p50_ms": 17.456,
+  "p95_ms": 44.112,
+  "p99_ms": 111.469,
+  "errors": {},
+  "farm_version_errors": 0,
+  "minute_samples": [
+    {
+      "elapsed_seconds": 60,
+      "attempted": 18003,
+      "accepted": 17997,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 299.90001656893685
+    },
+    {
+      "elapsed_seconds": 120,
+      "attempted": 36003,
+      "accepted": 35997,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 299.9999997
+    },
+    {
+      "elapsed_seconds": 180,
+      "attempted": 54006,
+      "accepted": 54001,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 300.0166609396796
+    },
+    {
+      "elapsed_seconds": 240,
+      "attempted": 72009,
+      "accepted": 71997,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 299.88335627259374
+    },
+    {
+      "elapsed_seconds": 300,
+      "attempted": 90006,
+      "accepted": 89997,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 299.99999874499997
+    },
+    {
+      "elapsed_seconds": 360,
+      "attempted": 108009,
+      "accepted": 108003,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 300.04999337305526
+    },
+    {
+      "elapsed_seconds": 420,
+      "attempted": 126012,
+      "accepted": 126003,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 299.95000803204465
+    },
+    {
+      "elapsed_seconds": 480,
+      "attempted": 144009,
+      "accepted": 144003,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 299.999999645
+    },
+    {
+      "elapsed_seconds": 540,
+      "attempted": 162012,
+      "accepted": 162006,
+      "rejected": 0,
+      "failed": 0,
+      "accepted_rps": 299.9999995050825
+    }
+  ],
+  "hot_viewers": [
+    1,
+    2,
+    4,
+    8,
+    20
+  ]
+}
