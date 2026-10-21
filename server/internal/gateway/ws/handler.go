@@ -9,6 +9,7 @@ package ws
 
 import (
 	"context"
+	"encoding/base64"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -215,8 +216,27 @@ func legacySessionID(token string) string {
 	return token
 }
 
+// websocketToken reads the browser client's auth token from its WebSocket
+// subprotocol. Query-string support remains for older non-browser clients.
+func websocketToken(r *http.Request) (string, string) {
+	for _, header := range r.Header.Values("Sec-WebSocket-Protocol") {
+		for _, protocol := range strings.Split(header, ",") {
+			protocol = strings.TrimSpace(protocol)
+			encoded, ok := strings.CutPrefix(protocol, "farm-auth.")
+			if !ok || encoded == "" {
+				continue
+			}
+			decoded, err := base64.RawURLEncoding.DecodeString(encoded)
+			if err == nil && len(decoded) > 0 {
+				return string(decoded), protocol
+			}
+		}
+	}
+	return r.URL.Query().Get("token"), ""
+}
+
 func (h *Handler) handleUpgrade(w http.ResponseWriter, r *http.Request) {
-	token := r.URL.Query().Get("token")
+	token, authProtocol := websocketToken(r)
 	if token == "" {
 		http.Error(w, "token required", http.StatusUnauthorized)
 		return
@@ -259,7 +279,12 @@ func (h *Handler) handleUpgrade(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	conn, err := upgrader.Upgrade(w, r, nil)
+	var responseHeader http.Header
+	if authProtocol != "" {
+		responseHeader = make(http.Header)
+		responseHeader.Set("Sec-WebSocket-Protocol", authProtocol)
+	}
+	conn, err := upgrader.Upgrade(w, r, responseHeader)
 	if err != nil {
 		h.log.Error("ws upgrade failed", slog.String("error", err.Error()))
 		return
