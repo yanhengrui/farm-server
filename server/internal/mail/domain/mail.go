@@ -88,4 +88,6 @@ type MailService interface {
 	ClaimAttachment(ctx context.Context, attachmentID int64, userID int64) error
 	// MarkRead 将邮件标记为已读（静默，不报错如果已读）。
 	MarkRead(ctx context.Context, mailID int64, userID int64) error
+	// MarkAllRead marks every unread mail belonging to a user as read.
+	MarkAllRead(ctx context.Context, userID int64) error
 }

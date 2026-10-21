@@ -19,6 +19,7 @@ type MailSvc interface {
 	GetSummary(ctx context.Context, userID int64) (maildomain.MailboxSummary, error)
 	ClaimAttachment(ctx context.Context, attachmentID int64, userID int64) error
 	MarkRead(ctx context.Context, mailID int64, userID int64) error
+	MarkAllRead(ctx context.Context, userID int64) error
 }
 
 // Server 将邮件 RPC 暴露为 HTTP/JSON；注册在 gamesvr 的内部端口（GRPC_LISTEN_ADDR）。
@@ -36,6 +37,7 @@ func (s *Server) RegisterRoutes(mux *http.ServeMux) {
 	mux.HandleFunc("/rpc/mail/summary", s.handleSummary)
 	mux.HandleFunc("/rpc/mail/claim", s.handleClaim)
 	mux.HandleFunc("/rpc/mail/mark-read", s.handleMarkRead)
+	mux.HandleFunc("/rpc/mail/mark-all-read", s.handleMarkAllRead)
 }
 
 func (s *Server) handleSummary(w http.ResponseWriter, r *http.Request) {
@@ -161,6 +163,26 @@ func (s *Server) handleMarkRead(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	writeResp(w, http.StatusOK, MarkReadResp{})
+}
+
+func (s *Server) handleMarkAllRead(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+	var req MarkAllReadReq
+	if err := json.NewDecoder(r.Body).Decode(&req); err != nil || req.UserID == 0 {
+		writeResp(w, http.StatusBadRequest, MarkAllReadResp{Err: &RPCErr{
+			Code: string(errcode.CommonInvalidArgument), Message: "user_id required",
+		}})
+		return
+	}
+	if err := s.svc.MarkAllRead(r.Context(), req.UserID); err != nil {
+		rpcErr := toRPCErr(err)
+		writeResp(w, errcode.HTTPStatus(errcode.Code(rpcErr.Code)), MarkAllReadResp{Err: rpcErr})
+		return
+	}
+	writeResp(w, http.StatusOK, MarkAllReadResp{})
 }
 
 // mailToDTO 将领域实体转换为传输 DTO。

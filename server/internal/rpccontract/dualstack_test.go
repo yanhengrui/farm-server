@@ -181,6 +181,7 @@ func (f *fixture) GetSummary(context.Context, int64) (maildomain.MailboxSummary,
 }
 func (f *fixture) ClaimAttachment(context.Context, int64, int64) error    { return nil }
 func (f *fixture) MarkRead(context.Context, int64, int64) error           { return nil }
+func (f *fixture) MarkAllRead(context.Context, int64) error               { return nil }
 func (f *fixture) IncrProgress(context.Context, int64, string, int) error { return nil }
 func (f *fixture) ListTasks(context.Context, int64) ([]taskdomain.TaskProgress, error) {
 	return []taskdomain.TaskProgress{{TaskKey: "plant_10", Progress: 3, Status: taskdomain.TaskStatusActive, UpdatedAt: f.now}}, nil

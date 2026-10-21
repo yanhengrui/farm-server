@@ -22,6 +22,7 @@ func (stubMailboxClient) GetSummary(context.Context, int64) (mailrpc.MailboxSumm
 }
 func (stubMailboxClient) ClaimAttachment(context.Context, int64, int64) error { return nil }
 func (stubMailboxClient) MarkRead(context.Context, int64, int64) error        { return nil }
+func (stubMailboxClient) MarkAllRead(context.Context, int64) error            { return nil }
 
 func TestMailboxSummaryReturnsOnlyBadgeState(t *testing.T) {
 	secret := []byte("mail-handler-test-secret")

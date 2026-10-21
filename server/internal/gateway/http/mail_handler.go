@@ -21,6 +21,7 @@ type MailClient interface {
 	GetSummary(ctx context.Context, userID int64) (mailrpc.MailboxSummaryDTO, error)
 	ClaimAttachment(ctx context.Context, attachmentID int64, userID int64) error
 	MarkRead(ctx context.Context, mailID int64, userID int64) error
+	MarkAllRead(ctx context.Context, userID int64) error
 }
 
 // MailHandler 处理邮件相关 HTTP 请求。
@@ -46,6 +47,7 @@ func (h *MailHandler) RegisterRoutes(mux *http.ServeMux) {
 	mux.HandleFunc("/api/v1/mail/summary", h.handleSummary)
 	mux.HandleFunc("/api/v1/mail/claim", h.handleClaim)
 	mux.HandleFunc("/api/v1/mail/read", h.handleRead)
+	mux.HandleFunc("/api/v1/mail/read-all", h.handleReadAll)
 }
 
 func (h *MailHandler) handleSummary(w http.ResponseWriter, r *http.Request) {
@@ -100,7 +102,7 @@ func (h *MailHandler) handleList(w http.ResponseWriter, r *http.Request) {
 
 // claimReq 领取附件请求体。
 type claimReq struct {
-	AttachmentID int64 `json:"attachment_id"`
+	AttachmentID int64 `json:"attachment_id,string"`
 }
 
 func (h *MailHandler) handleClaim(w http.ResponseWriter, r *http.Request) {
@@ -131,7 +133,7 @@ func (h *MailHandler) handleClaim(w http.ResponseWriter, r *http.Request) {
 
 // readReq 标记已读请求体。
 type readReq struct {
-	MailID int64 `json:"mail_id"`
+	MailID int64 `json:"mail_id,string"`
 }
 
 func (h *MailHandler) handleRead(w http.ResponseWriter, r *http.Request) {
@@ -153,6 +155,25 @@ func (h *MailHandler) handleRead(w http.ResponseWriter, r *http.Request) {
 	if err := h.mail.MarkRead(r.Context(), req.MailID, userID); err != nil {
 		writeErrFromError(w, err)
 		return
+	}
+	writeJSON(w, http.StatusOK, map[string]bool{"ok": true})
+}
+
+func (h *MailHandler) handleReadAll(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+	userID, ok := h.authUser(w, r)
+	if !ok {
+		return
+	}
+	if err := h.mail.MarkAllRead(r.Context(), userID); err != nil {
+		writeErrFromError(w, err)
+		return
+	}
+	if h.readCache != nil {
+		h.readCache.Invalidate(r.Context(), 0, userID)
 	}
 	writeJSON(w, http.StatusOK, map[string]bool{"ok": true})
 }

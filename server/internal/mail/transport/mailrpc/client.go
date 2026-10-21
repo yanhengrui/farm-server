@@ -208,6 +208,26 @@ func (c *Client) MarkRead(ctx context.Context, mailID int64, userID int64) error
 	return nil
 }
 
+// MarkAllRead asks gamesvr to mark the recipient's entire unread mailbox read.
+func (c *Client) MarkAllRead(ctx context.Context, userID int64) error {
+	body, _ := json.Marshal(MarkAllReadReq{UserID: userID})
+	r, _ := http.NewRequestWithContext(ctx, http.MethodPost, c.baseURL+"/rpc/mail/mark-all-read", bytes.NewReader(body))
+	r.Header.Set("Content-Type", "application/json")
+	resp, err := c.http.Do(r)
+	if err != nil {
+		return fmt.Errorf("http_do mark_all_read: %w", err)
+	}
+	defer resp.Body.Close()
+	var out MarkAllReadResp
+	if err := json.NewDecoder(resp.Body).Decode(&out); err != nil {
+		return fmt.Errorf("decode_mark_all_read_resp: %w", err)
+	}
+	if out.Err != nil {
+		return errcode.FromRemoteReason(out.Err.Code, out.Err.Message, out.Err.Reason, out.Err.RetryAfterMs)
+	}
+	return nil
+}
+
 func mailDTOsFromProto(items []*rpcv1.Mail) []MailDTO {
 	out := make([]MailDTO, 0, len(items))
 	for _, item := range items {

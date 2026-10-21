@@ -109,6 +109,16 @@ func (s *stubMailSvc) MarkRead(_ context.Context, mailID int64, userID int64) er
 	return nil
 }
 
+func (s *stubMailSvc) MarkAllRead(_ context.Context, userID int64) error {
+	for id, mail := range s.mails {
+		if mail.UserID == userID && mail.Status == maildomain.MailStatusUnread {
+			mail.Status = maildomain.MailStatusRead
+			s.mails[id] = mail
+		}
+	}
+	return nil
+}
+
 func newTestPair(t *testing.T) (*Client, *stubMailSvc) {
 	t.Helper()
 	svc := newStubMailSvc()

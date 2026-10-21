@@ -72,4 +72,12 @@ func (s *ShardedMailService) MarkRead(ctx context.Context, mailID int64, userID 
 	return service.MarkRead(ctx, mailID, userID)
 }
 
+func (s *ShardedMailService) MarkAllRead(ctx context.Context, userID int64) error {
+	service, err := s.service(userID)
+	if err != nil {
+		return err
+	}
+	return service.MarkAllRead(ctx, userID)
+}
+
 var _ maildomain.MailService = (*ShardedMailService)(nil)

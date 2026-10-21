@@ -300,6 +300,40 @@ func (s *MySQLMailService) MarkRead(ctx context.Context, mailID int64, userID in
 	return nil
 }
 
+// MarkAllRead marks all unread mail as read in one transaction. The mails
+// update trigger maintains the authoritative mailbox count and version.
+func (s *MySQLMailService) MarkAllRead(ctx context.Context, userID int64) error {
+	now := time.Now().UTC()
+	tx, err := s.db.BeginTx(ctx, &sql.TxOptions{Isolation: sql.LevelReadCommitted})
+	if err != nil {
+		return fmt.Errorf("begin mark all read: %w", err)
+	}
+	defer tx.Rollback() //nolint:errcheck
+	result, err := tx.ExecContext(ctx,
+		`UPDATE mails SET status='READ', read_at=? WHERE user_id=? AND status='UNREAD'`,
+		now, uint64(userID))
+	if err != nil {
+		return err
+	}
+	affected, err := result.RowsAffected()
+	if err != nil {
+		return fmt.Errorf("mark all read affected rows: %w", err)
+	}
+	if affected == 0 {
+		return tx.Commit()
+	}
+	// The mails UPDATE trigger performed the authoritative decrement.
+	summary, err := loadSummaryTx(ctx, tx, userID)
+	if err != nil {
+		return err
+	}
+	if err := tx.Commit(); err != nil {
+		return err
+	}
+	s.notify(ctx, summary)
+	return nil
+}
+
 func loadSummaryTx(ctx context.Context, tx *sql.Tx, userID int64) (maildomain.MailboxSummary, error) {
 	summary := maildomain.MailboxSummary{UserID: userID}
 	if err := tx.QueryRowContext(ctx,

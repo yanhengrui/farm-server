@@ -28,8 +28,8 @@ type ListMailsReq struct {
 
 // MailDTO 是邮件列表项。
 type MailDTO struct {
-	MailID      int64           `json:"mail_id"`
-	SenderID    *int64          `json:"sender_id,omitempty"`
+	MailID      int64           `json:"mail_id,string"`
+	SenderID    *int64          `json:"sender_id,string,omitempty"`
 	MailType    string          `json:"mail_type"`
 	Title       string          `json:"title"`
 	Content     string          `json:"content"`
@@ -40,9 +40,9 @@ type MailDTO struct {
 
 // AttachmentDTO 是附件 DTO。
 type AttachmentDTO struct {
-	AttachmentID int64      `json:"attachment_id,omitempty"`
+	AttachmentID int64      `json:"attachment_id,string,omitempty"`
 	ItemType     string     `json:"item_type"`
-	ItemID       int64      `json:"item_id"`
+	ItemID       int64      `json:"item_id,string"`
 	Quantity     int64      `json:"quantity"`
 	ClaimedAt    *time.Time `json:"claimed_at,omitempty"`
 }
@@ -86,6 +86,16 @@ type MarkReadReq struct {
 
 // MarkReadResp 是 /rpc/mail/mark-read 响应体。
 type MarkReadResp struct {
+	Err *RPCErr `json:"error,omitempty"`
+}
+
+// MarkAllReadReq is the /rpc/mail/mark-all-read request body.
+type MarkAllReadReq struct {
+	UserID int64 `json:"user_id"`
+}
+
+// MarkAllReadResp is the /rpc/mail/mark-all-read response body.
+type MarkAllReadResp struct {
 	Err *RPCErr `json:"error,omitempty"`
 }
 
